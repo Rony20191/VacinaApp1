@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\VacinaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
