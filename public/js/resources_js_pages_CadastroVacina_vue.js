@@ -50,23 +50,66 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CardVacina",
   data: function data() {
     return {
       valido: true,
       vacina: {
-        fabricante: '',
-        lote: '',
-        data_validade: '',
-        numero_doses: 1,
-        intervalo_minimo: 1
+        imunobiologico: "",
+        fabricante: "",
+        lote: "",
+        data_validade: "",
+        numero_doses: "1",
+        intervalo_minimo: "1"
       },
       requiredRules: [function (v) {
-        return !!v || 'Esse campo é obrigatório';
+        return !!v || "Esse campo é obrigatório";
       }],
       numeroRules: [function (v) {
-        return v.length > 0 | 'O número deve ser maior que zero';
+        return v && v.length > 0 || "O número deve ser maior que zero";
       }]
     };
   },
@@ -89,23 +132,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 _context.prev = 2;
                 _context.next = 5;
-                return axios.post("api/vacina", _this.paciente);
+                return axios.post("api/vacina", _this.vacina);
 
               case 5:
-                _context.next = 10;
+                _this.$refs.formCadastroVacina.reset();
+
+                _this.$swal.fire('Vacina Cadastra com sucesso!!', '<br/>', 'success').then(function () {
+                  _this.$router.push({
+                    name: 'listVacina'
+                  });
+                });
+
+                _context.next = 12;
                 break;
 
-              case 7:
-                _context.prev = 7;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](2);
-                console.log(_context.t0);
 
-              case 10:
+                _this.$toastr.warning(_context.t0.response.data.errors.toString().replaceAll(",", "</br>"));
+
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[2, 7]]);
+        }, _callee, null, [[2, 9]]);
       }))();
     },
     reset: function reset() {
@@ -1229,6 +1281,7 @@ var render = function() {
     [
       _c(
         "v-card",
+        { attrs: { "max-width": "600px" } },
         [
           _c(
             "v-card-text",
@@ -1247,6 +1300,21 @@ var render = function() {
                   }
                 },
                 [
+                  _c("v-text-field", {
+                    attrs: {
+                      label: "Imunobilógico",
+                      rules: _vm.requiredRules,
+                      placeholder: "Imunobilógico"
+                    },
+                    model: {
+                      value: _vm.vacina.imunobiologico,
+                      callback: function($$v) {
+                        _vm.$set(_vm.vacina, "imunobiologico", $$v)
+                      },
+                      expression: "vacina.imunobiologico"
+                    }
+                  }),
+                  _vm._v(" "),
                   _c("v-text-field", {
                     attrs: {
                       label: "Fabricante",
@@ -1342,7 +1410,7 @@ var render = function() {
                   attrs: { color: "primary" },
                   on: { click: _vm.cadastrarVacina }
                 },
-                [_vm._v(" Cadastrar ")]
+                [_vm._v("\n                Cadastrar\n            ")]
               ),
               _vm._v(" "),
               _c(

@@ -61,6 +61,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ListVacina",
   data: function data() {
@@ -68,23 +73,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       table: {
         loading: false,
         headers: [{
-          text: 'Fabricante',
-          value: 'fabricante'
+          text: "Fabricante",
+          value: "fabricante"
         }, {
-          text: 'Lote',
-          value: 'lote'
+          text: "Lote",
+          value: "lote"
         }, {
-          text: 'Data Validade',
-          value: 'data_validade'
+          text: "Data Validade",
+          value: "data_validade"
         }, {
-          text: 'Número de Doses',
-          value: 'numero_doses'
+          text: "Número de Doses",
+          value: "numero_doses"
         }, {
-          text: 'Intervalo mínimo entre doses(Dias)',
-          value: 'intervalo_minimo'
+          text: "Intervalo mínimo entre doses(Dias)",
+          value: "intervalo_minimo"
         }],
         items: [],
-        search: ''
+        search: ""
       }
     };
   },
@@ -103,7 +108,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.table.loading = true;
                 _this.table.items = [];
                 _context.next = 5;
-                return axios.get('/vacinas');
+                return axios.get("api/vacinas");
 
               case 5:
                 _yield$axios$get = _context.sent;
@@ -133,7 +138,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     formatarData: function formatarData(data) {
-      return data.split('-').reverse().join('/');
+      return data.split("-").reverse().join("/");
     }
   },
   created: function created() {

@@ -44,6 +44,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "home",
@@ -292,7 +295,7 @@ var render = function() {
                           _c("v-col", { attrs: { cols: "8" } }, [
                             _c("p", { staticClass: "text-justify" }, [
                               _vm._v(
-                                "\n                        Este desafio consiste em desenvolver um protótipo de aplicação que aborde a temática de\n                        vacinação contra COVID-19\n                      "
+                                "\n                                Este desafio consiste em desenvolver um\n                                protótipo de aplicação que aborde a temática\n                                de vacinação contra COVID-19\n                            "
                               )
                             ])
                           ])

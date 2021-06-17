@@ -29,7 +29,7 @@ class PacienteController extends Controller
         }catch (ValidationException $ex){
             return response()->json(['errors' => $ex->errors(),'messagem' => $ex->getMessage()],Response::HTTP_UNPROCESSABLE_ENTITY);
         }catch (\Exception $ex){
-            return response()->json(['error' => $ex->getMessage()],Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json(['errors' => $ex->getMessage()],Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -39,7 +39,7 @@ class PacienteController extends Controller
            $dados = $this->pacienteService->listarPacientes();
            return response()->json(['dados' => $dados]);
        }catch (\Exception $ex){
-           return response()->json(['error' => $ex->getMessage()],Response::HTTP_INTERNAL_SERVER_ERROR);
+           return response()->json(['errors' => $ex->getMessage()],Response::HTTP_INTERNAL_SERVER_ERROR);
        }
     }
 }

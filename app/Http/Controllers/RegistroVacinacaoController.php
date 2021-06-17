@@ -26,7 +26,7 @@ class RegistroVacinacaoController extends Controller
         } catch (HttpResponseException $hp) {
             return response()->json(['errors' => json_decode($hp->getResponse()->getContent()), 'messagem' => $hp->getMessage()], Response::HTTP_BAD_REQUEST);
         } catch (\DomainException $ex) {
-            return response()->json(['error' => $ex->getMessage()], Response::HTTP_BAD_REQUEST);
+            return response()->json(['errors' => $ex->getMessage()], Response::HTTP_BAD_REQUEST);
         }
     }
 
@@ -39,7 +39,7 @@ class RegistroVacinacaoController extends Controller
         } catch (HttpResponseException $hp) {
             return response()->json(['errors' => json_decode($hp->getResponse()->getContent()), 'messagem' => $hp->getMessage()], Response::HTTP_BAD_REQUEST);
         } catch (\DomainException $ex) {
-            return response()->json(['error' => $ex->getMessage()], Response::HTTP_BAD_REQUEST);
+            return response()->json(['errors' => $ex->getMessage()], Response::HTTP_BAD_REQUEST);
         }
     }
 }

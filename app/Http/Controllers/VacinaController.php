@@ -42,7 +42,7 @@ class VacinaController extends Controller
             $dados = $this->vacinaService->listarVacinas();
             return response()->json(['dados' => $dados]);
         }catch (\Exception $ex){
-            return response()->json(['error' => $ex->getMessage()],Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json(['errors' => $ex->getMessage()],Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
      public function quantDoses($id)

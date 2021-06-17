@@ -80,6 +80,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CadPaciente",
   data: function data() {
@@ -88,7 +90,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       paciente: {
         nome: "",
         cpf: "",
-        dataNascimento: ""
+        data_nascimento: ""
       },
       nomeRules: [function (v) {
         return !!v || "Nome é obrigatório";
@@ -104,7 +106,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var resto;
 
         if (!cpf) {
-          return '';
+          return "";
         }
 
         cpf = cpf.replace(/\.|\-/g, "");
@@ -153,20 +155,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post("api/paciente", _this.paciente);
 
               case 5:
-                _context.next = 10;
+                _this.$swal.fire('Paciente Cadastra com sucesso!!', '<br/>', 'success').then(function () {
+                  _this.$router.push({
+                    name: 'listPaciente'
+                  });
+                });
+
+                _context.next = 11;
                 break;
 
-              case 7:
-                _context.prev = 7;
+              case 8:
+                _context.prev = 8;
                 _context.t0 = _context["catch"](2);
-                console.log(_context.t0); // this.$toastr.warning(error.data.errors.toString())
 
-              case 10:
+                _this.$toastr.warning(_context.t0.response.data.errors.toString());
+
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[2, 7]]);
+        }, _callee, null, [[2, 8]]);
       }))();
     },
     reset: function reset() {
@@ -1293,7 +1302,7 @@ var render = function() {
                             name: "mask",
                             rawName: "v-mask",
                             value: _vm.paciente.cpf ? "###.###.###-##" : "",
-                            expression: "paciente.cpf?'###.###.###-##':''"
+                            expression: "paciente.cpf ? '###.###.###-##' : ''"
                           }
                         ],
                         attrs: {
@@ -1320,11 +1329,11 @@ var render = function() {
                           name: "data_nascimento"
                         },
                         model: {
-                          value: _vm.paciente.dataNascimento,
+                          value: _vm.paciente.data_nascimento,
                           callback: function($$v) {
-                            _vm.$set(_vm.paciente, "dataNascimento", $$v)
+                            _vm.$set(_vm.paciente, "data_nascimento", $$v)
                           },
-                          expression: "paciente.dataNascimento"
+                          expression: "paciente.data_nascimento"
                         }
                       })
                     ],
@@ -1344,7 +1353,11 @@ var render = function() {
                       attrs: { color: "primary" },
                       on: { click: _vm.cadastrarPaciente }
                     },
-                    [_vm._v(" Cadastrar ")]
+                    [
+                      _vm._v(
+                        "\n                    Cadastrar\n                "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -1353,7 +1366,7 @@ var render = function() {
                       attrs: { outlined: "", color: "error" },
                       on: { click: _vm.reset }
                     },
-                    [_vm._v(" Limpar ")]
+                    [_vm._v("\n                    Limpar\n                ")]
                   )
                 ],
                 1

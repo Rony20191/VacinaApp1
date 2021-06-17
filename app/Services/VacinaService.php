@@ -32,7 +32,7 @@ class VacinaService implements Contracts\VacinaServiceInterface
             DB::beginTransaction();
             $vacina = $this->vacinaRepository->cadastrarVacina($dados);
             for ($i = 1; $i <= $vacina->numero_doses; $i++) {
-                $dose['nome'] = self::prefix . '_' . $i;
+                $dose['nome'] = self::prefix . ' ' . $i;
                 $dose['vacina_id'] = $vacina->id;
                 $this->doseRepository->cadastrarDose($dose);
             }

@@ -35,7 +35,7 @@ class RegistroVacinacaoService implements Contracts\RegistroVacinacaoServiceInte
     public function realizarVacinacao(array $dados)
     {
 
-        $erros = [];
+        $errors = [];
         $paciente = $this->pacienteRepository->showPaciente($dados['paciente_id']);
         $vacinas = $paciente->vacinas()->get();
         $vacina = $this->vacinaRepository->show($dados['vacina_id']);
@@ -55,10 +55,10 @@ class RegistroVacinacaoService implements Contracts\RegistroVacinacaoServiceInte
         } else {
             foreach ($vacinas as $vacina) {
                 if ($vacina->pivot->dose_id === $dados['dose_id']) {
-                    array_push($erros, ['paciente_vacinado' => trans("exception.paciente.paciente-vacinado")]);
+                    array_push($errors, ['paciente_vacinado' => trans("exception.paciente.paciente-vacinado")]);
                 }
                 if ($vacina->pivot->data_vacinacao == $dados['data_vacinacao'] && $vacina->pivot->dose_id === $dados['dose_id']) {
-                    array_push($erros, ['data_vacinacao' => trans("exception.registro.data-vacinacao-igual")]);
+                    array_push($errors, ['data_vacinacao' => trans("exception.registro.data-vacinacao-igual")]);
 
                 } else {
                     $dataInicio = Carbon::parse($dados['data_vacinacao']);
@@ -66,14 +66,14 @@ class RegistroVacinacaoService implements Contracts\RegistroVacinacaoServiceInte
                     $dataProxima = $data->addDays($vacina->intervalo_minimo);
 
                     if ($dataProxima >= $dataInicio && $vacina->pivot->dose_id != $dados['dose_id'] && $vacina->id == $dados['vacina_id']) {
-                        array_push($erros, ['data_vacinacao' => trans("exception.registro.intervalo-entre-datas")]);
+                        array_push($errors, ['data_vacinacao' => trans("exception.registro.intervalo-entre-datas")]);
                     }
                 }
             }
         }
 
-        if (!empty($erros)) {
-            throw new HttpResponseException(response()->json($erros, Response::HTTP_BAD_REQUEST));
+        if (!empty($errors)) {
+            throw new HttpResponseException(response()->json($errors, Response::HTTP_BAD_REQUEST));
         }
         $this->registroVacinacaoRepository->realizarVacinacao($dados, $paciente);
         return $dados;
